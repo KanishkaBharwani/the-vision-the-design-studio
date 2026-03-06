@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vision, The Design Studio</title>
+    <!-- Favicon (Browser Tab Icon) -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/logo new.png') }}">
+
+    <!-- SEO & Social Media Meta Tags -->
+    <meta name="description" content="The Vision, The Design Studio. Specializing in luxury interior design, architecture, and bespoke living spaces.">
+    
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:title" content="The Vision, The Design Studio">
+    <meta property="og:description" content="Crafting spaces that tell your story. Luxury interior design and architecture.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/hero/hero1.jpeg', _external=True) }}">
+    <meta property="og:url" content="https://www.yourwebsite.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Replaces Bootstrap for modern, single-file styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        klift: {
+                            accent: '#c0a98e', /* Klift-style muted gold/beige */
+                            dark: '#1a1a1a',
+                            light: '#f9f9ff',
+                            gray: '#777777'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Klift Animations & Tweaks */
+        body { font-family: 'Poppins', sans-serif; color: #777777; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; color: #1a1a1a; }
+        
+        .hero-slide { transition: opacity 1s ease-in-out; }
+        .hero-slide.hidden-slide { opacity: 0; pointer-events: none; z-index: 0; }
+        .hero-slide.active-slide { opacity: 1; pointer-events: auto; z-index: 10; }
+        
+        /* Klift Sticky Nav Transition */
+        .nav-scrolled { background-color: #ffffff !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding-top: 15px !important; padding-bottom: 15px !important; }
+        .nav-scrolled a.nav-link { color: #1a1a1a !important; }
+        .nav-scrolled .logo-text { color: #1a1a1a !important; }
+        
+        .klift-btn {
+            background-color: #c0a98e; color: white; transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px; font-size: 14px; font-weight: 500;
+        }
+        .klift-btn:hover { background-color: #1a1a1a; color: white; }
+    </style>
+</head>
+<body class="bg-klift-light antialiased">
+
+    <!-- Navigation (Klift Transparent to Solid Style) -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 px-4 md:px-12 bg-transparent">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-3xl font-serif font-bold text-white logo-text transition-colors duration-300">The Vision. The Design Studio.</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="nav-link text-white font-medium hover:text-klift-accent transition-colors">Home</a>
+                <a href="#about" class="nav-link text-white font-medium hover:text-klift-accent transition-colors">About</a>
+                <a href="#portfolio" class="nav-link text-white font-medium hover:text-klift-accent transition-colors">Projects</a>
+                <a href="#reviews" class="nav-link text-white font-medium hover:text-klift-accent transition-colors">Reviews</a>            </div>
+            <a href="#contact" class="hidden md:inline-block klift-btn px-8 py-3 rounded">Book a Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Klift Full-Screen Slider) -->
+    <header class="relative h-screen w-full overflow-hidden bg-klift-dark">
+        <!-- Slide 1 -->
+        <div class="hero-slide active-slide absolute inset-0">
+        <img src="{{ url_for('static', filename='images/hero/hero1.jpeg') }}" alt="Interior 1" class="w-full h-full object-cover object-center scale-105 transform transition-transform duration-[10s]">            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+                <p class="text-klift-accent tracking-[0.2em] uppercase font-semibold mb-4 text-sm md:text-base">Architecture & Interior</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 leading-tight">Soulful <br>Sanctuaries</h1>
+                <a href="#portfolio" class="klift-btn px-10 py-4 rounded">View Our Work</a>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="hero-slide hidden-slide absolute inset-0">
+        <img src="{{ url_for('static', filename='images/hero/hero4.jpeg') }}" alt="Interior 1" class="w-full h-full object-cover object-center scale-105 transform transition-transform duration-[10s]">            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+                <p class="text-klift-accent tracking-[0.2em] uppercase font-semibold mb-4 text-sm md:text-base">Design With Intention</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-bold mb-8 leading-tight">Bespoke <br>Living Spaces</h1>
+                <a href="#contact" class="klift-btn px-10 py-4 rounded">Get in Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section (Klift Overlapping Style) -->
+   <section id="about" class="py-24 bg-white">
+  <div class="container mx-auto px-6 lg:px-12">
+
+    <div class="relative flex flex-col lg:flex-row items-center">
+
+      <!-- IMAGE -->
+      <div class="lg:w-1/2 flex justify-center">
+
+  <div class="relative">
+
+    <img src="{{ url_for('static', filename='images/founder/photo.jpeg') }}"
+         class="h-[520px] object-cover shadow-xl">
+
+    <!-- subtle frame -->
+    <div class="absolute -inset-6 border border-[#d8c9b1] -z-10"></div>
+
+  </div>
+
+</div>
+
+      <!-- OVERLAPPING TEXT BOX -->
+      <div class="lg:w-1/2 bg-white p-12 shadow-2xl lg:absolute lg:left-[40%] lg:top-[50px] max-w-xl">
+
+        <p class="text-sm tracking-widest uppercase text-[#b89b6d] mb-4">
+          ABOUT US
+        </p>
+
+        <h2 class="text-4xl lg:text-4xl leading-tight">
+          We craft spaces that tell your story.
+        </h2>
+
+        <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+          At The Vision, The Design Studio, we specialize in transforming any space
+          into a warm, soulful sanctuary. Our approach blends intentional design
+          with luxury aesthetics to create bespoke environments tailored perfectly
+          to your lifestyle.
+        </p>
+        <div class="mt-8 flex items-center gap-4">
+  <div class="w-12 h-[2px] bg-[#b89b6d]"></div>
+  <p class="font-semibold tracking-wide text-lg" style="font-family: 'Playfair Display', serif;">
+    Sahiba Mihika Narsinghani
+  </p>
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+    <!-- Services Section -->
+    <section class="py-24 bg-klift-dark text-white text-center">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="mb-16">
+                <p class="text-klift-accent tracking-widest uppercase text-sm font-semibold mb-2">What We Do</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Our Expertise</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="p-6">
+                    <div class="text-klift-accent text-5xl mb-6 font-serif italic">01.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Interior Design</h3>
+                    <p class="text-gray-400">Complete spatial planning, furniture design, and styling to create cohesive, beautiful homes.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-klift-accent text-5xl mb-6 font-serif italic">02.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Architecture</h3>
+                    <p class="text-gray-400">Structural design, renovations and layout optimizations ensuring both form and function are perfect.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-klift-accent text-5xl mb-6 font-serif italic">03.</div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Consultation</h3>
+                    <p class="text-gray-400">One-on-one sessions to provide expert advice, color palettes, and design direction for your space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Projects Grid -->
+    <section id="portfolio" class="py-24 bg-white">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <p class="text-klift-accent tracking-widest uppercase text-sm font-semibold mb-2">Recent Works</p>
+                    <h2 class="text-4xl md:text-5xl font-bold">Featured Projects</h2>
+                </div>
+                <a href="/portfolio" class="hidden md:inline-block text-klift-dark font-medium border-b border-klift-dark pb-1 hover:text-klift-accent hover:border-klift-accent transition-colors">View All Projects</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative overflow-hidden cursor-pointer">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio2.jpg') }}" alt="Interior 1" class="w-full h-full object-cover object-center scale-105 transform transition-transform duration-[10s]">            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100">
+                        <p class="text-klift-accent text-sm uppercase tracking-widest mb-2">Residential</p>
+                        <h3 class="text-2xl text-white font-serif">The Azure Kitchen</h3>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group relative overflow-hidden cursor-pointer">
+                <img src="{{ url_for('static', filename='images/portfolio/portfolio10.jpeg') }}" alt="Interior 1" class="w-full h-full object-cover object-center scale-105 transform transition-transform duration-[10s]"> 
+                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100">
+                        <p class="text-klift-accent text-sm uppercase tracking-widest mb-2">Minimalist</p>
+                        <h3 class="text-2xl text-white font-serif">The Slate Suite</h3>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group relative overflow-hidden cursor-pointer mt-0 md:-mt-12 lg:mt-0">
+                <img src="{{ url_for('static', filename='images/portfolio/portfolio4.jpeg') }}" alt="Interior 1" class="w-full h-full object-cover object-center scale-105 transform transition-transform duration-[10s]"> 
+                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100">                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100">
+                        <p class="text-klift-accent text-sm uppercase tracking-widest mb-2">Exterior</p>
+                        <h3 class="text-2xl text-white font-serif">Terrace Sanctuary</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Reviews Section -->
+    <section id="reviews" class="py-24 bg-white">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="text-center mb-16">
+                <p class="text-klift-accent tracking-widest uppercase text-sm font-semibold mb-2">Client Testimonials</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-klift-dark">What They Say</h2>
+            </div>
+       <!-- Reviews Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for review in reviews %}
+                <!-- Added 'relative' to this div so the delete button stays in the corner -->
+                <div class="bg-klift-light p-10 rounded shadow-lg hover:-translate-y-2 transition-transform duration-300 relative">
+                    
+                    <!-- Admin Delete Button -->
+                    {% if is_admin %}
+                    <form action="/delete-review/{{ review.id }}" method="POST" class="absolute top-4 right-4">
+                        <button type="submit" onclick="return confirm('Delete this review?');" class="text-red-400 hover:text-red-600 text-xs tracking-widest uppercase border border-red-200 hover:border-red-600 px-3 py-1 rounded transition-colors">Delete</button>
+                    </form>
+                    {% endif %}
+
+                    <div class="text-klift-accent text-2xl mb-6">
+                        {% if review.rating %}{% for i in range(review.rating) %}★{% endfor %}{% endif %}
+                    </div>
+                    <p class="text-gray-600 italic mb-8">"{{ review.review_text }}"</p>
+                    <div class="border-t border-gray-200 pt-6">
+                        <h4 class="font-serif text-xl text-klift-dark font-bold">{{ review.client_name }}</h4>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-span-3 text-center text-gray-500 italic">
+                    No reviews yet. Be the first to book a consultation!
+                </div>
+                {% endfor %} <!-- THIS IS THE TAG THAT WAS MISSING! -->
+            </div>
+            
+            <!-- Built-in Leave a Review Form -->
+<div class="mt-16 bg-klift-light p-8 md:p-12 rounded shadow-inner max-w-4xl mx-auto border-t-4 border-klift-dark">
+    <h3 class="text-2xl font-serif mb-6 text-klift-dark text-center">Share Your Experience</h3>
+    <form action="/submit-review" method="POST" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <input type="text" name="review_name" placeholder="Your Name" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent">
+            <div class="flex items-center border-b border-gray-300 py-3">
+                <span class="text-gray-400 mr-4">Rating (1-5):</span>
+                <input type="number" name="review_rating" min="1" max="5" value="5" required class="w-full focus:outline-none bg-transparent text-gray-700">
+            </div>
+        </div>
+        <textarea name="review_text" rows="3" placeholder="Write your review here..." required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent resize-none"></textarea>
+        <button type="submit" class="klift-btn w-full py-4 mt-4">Publish Review</button>
+    </form>
+</div>
+        </div>
+    </section>
+    <!-- Appointment / Contact Section -->
+    <section id="contact" class="py-24 bg-klift-light">
+        <div class="container mx-auto px-4 lg:px-12">
+            <div class="bg-white shadow-2xl flex flex-col lg:flex-row overflow-hidden">
+                <!-- Contact Info -->
+                <div class="lg:w-5/12 bg-klift-dark text-white p-12 flex flex-col justify-center">
+                    <h3 class="text-3xl font-serif mb-6">Let's Discuss Your Next Project</h3>
+                    <p class="text-gray-400 mb-8">Ready to transform your space? Book a consultation with us today and let's bring your vision to life.</p>
+                    
+                    <div class="mb-6">
+                        <p class="text-klift-accent uppercase text-xs tracking-widest mb-1">Email</p>
+                        <p class="text-lg">thevisionthedesignstudioo@gmail.com</p>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-klift-accent uppercase text-xs tracking-widest mb-1">Phone</p>
+                        <p class="text-lg">+91 9826504886</p>
+                    </div>
+                </div>
+                
+                <!-- Contact Form (Maps to your Flask backend) -->
+                <div class="lg:w-7/12 p-12 lg:p-16">
+                    <h3 class="text-3xl font-serif mb-8 text-klift-dark">Book a Consultation</h3>
+                   
+              <!-- 1. The empty message box (Hidden by default) -->
+<div id="form-message" style="display: none; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: bold;"></div>
+
+<!-- 2. Add id="booking-form" to your existing form -->
+<form id="booking-form" action="/contact" method="POST" class="contact-form space-y-6">
+    <!-- ... keep all your existing input fields exactly as they are ... -->
+                    <form action="/contact" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <input type="text" name="user_name" placeholder="Your Name" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors">
+                            </div>
+                            <div>
+                                <input type="email" name="user_email" placeholder="Your Email" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors">
+                            </div>
+                            <div>
+                                <input type="phone" name="user_phone" placeholder="Your Contact" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <input type="date" name="preferred_date" class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors text-gray-500">
+                            </div>
+                            <div>
+                                <select name="project_type" class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors text-gray-500">
+                                    <option value="" disabled selected>Project Type</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Consultation">Consultation</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="project_details" rows="4" placeholder="Tell us about your project..." class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="klift-btn w-full py-4 mt-4">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111111] text-gray-400 py-12 text-center md:text-left">
+        <div class="container mx-auto px-4 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div>
+                <h2 class="text-3xl font-serif font-bold text-white mb-2">The Vision. The Design Studio.</h2>
+            </div>
+            <div class="text-center">
+                <p>&copy; 2026 The Vision Studio. All rights reserved.</p>
+            </div>
+            <div class="md:text-right space-x-4">
+                <a href="https://www.instagram.com/thevisionthedesignstudio?igsh=Y2phbHY0cG92N3Br&utm_source=qr" class="hover:text-klift-accent transition-colors">Instagram</a>
+                <a href="mailto:thevisionthedesignstudioo@gmail.com" class="hover:text-klift-accent transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript for Slider & Navbar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sticky Navbar Logic
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const logoText = document.querySelector('.logo-text');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+
+            // 2. Hero Image Slider Logic
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            if(slides.length > 1) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active-slide');
+                    slides[currentSlide].classList.add('hidden-slide');
+                    
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    
+                    slides[currentSlide].classList.remove('hidden-slide');
+                    slides[currentSlide].classList.add('active-slide');
+                }, 6000); // Changes every 6 seconds
+            }
+        });
+    </script>
+    <script>
+    document.getElementById('booking-form').addEventListener('submit', async function(e) {
+        // THIS IS THE MAGIC LINE: Stops the page from reloading and jumping!
+        e.preventDefault(); 
+        
+        const form = this;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const messageBox = document.getElementById('form-message');
+        const originalText = submitBtn.innerText;
+        
+        // Show loading state
+        submitBtn.innerText = 'Sending...';
+        submitBtn.disabled = true;
+        messageBox.style.display = 'none';
+
+        try {
+            // Send data silently in the background
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            });
+            
+            const result = await response.json();
+            
+            // Show the result right above the form without moving the screen
+            messageBox.style.display = 'block';
+            if (result.status === "success") {
+                messageBox.style.backgroundColor = '#d4edda';
+                messageBox.style.color = '#155724';
+                messageBox.innerHTML = 'Thank you! Your request has been sent successfully.';
+                form.reset(); // Automatically clear the fields
+            } else {
+                messageBox.style.backgroundColor = '#f8d7da';
+                messageBox.style.color = '#721c24';
+                messageBox.innerHTML = 'Oops! There was an error sending your request. Please try again.';
+            }
+        } catch (err) {
+            messageBox.style.display = 'block';
+            messageBox.style.backgroundColor = '#f8d7da';
+            messageBox.style.color = '#721c24';
+            messageBox.innerHTML = 'Connection error. Please check your internet and try again.';
+        } finally {
+            // Restore the button
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>

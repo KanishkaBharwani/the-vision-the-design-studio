@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+
+    <title>About Us | The Vision, The Design Studio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script> 
+    <style>
+        .page-hero-slideshow {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <section class="site-branding-hero-small">
+        <div class="site-branding-overlay-small">
+            <h1>The Vision, The Design Studio</h1>
+            <p>Transforming spaces into warm, soulful sanctuaries.</p>
+        </div>
+    </section>
+
+    <nav class="bg-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+     
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8 text-gray-700">
+        <a href="/" class="hover:text-stone-600">Home</a>
+        <a href="/about" class="hover:text-stone-600">About</a>
+        <a href="/portfolio" class="hover:text-stone-600">Portfolio</a>
+        <a href="/testimonials" class="hover:text-stone-600">Testimonials</a>
+        <a href="/contact" class="hover:text-stone-600">Contact</a>
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+        ☰
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+      <a href="/" class="block py-2">Home</a>
+      <a href="/about" class="block py-2">About</a>
+      <a href="/portfolio" class="block py-2">Portfolio</a>
+      <a href="/testimonials" class="block py-2">Testimonials</a>
+      <a href="/contact" class="block py-2">Contact</a>
+  </div>
+</nav>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+
+    <main class="page-content">
+        <h1 class="page-title">The Visionary Behind the Studio</h1>
+        <p class="subtitle">A one-woman venture dedicated to creating soulful, intentional homes and workspaces.</p>
+
+        <section class="founder-intro">
+            
+            <div class="founder-image-container">
+                <img src="https://placehold.co/450x550/e9e5db/404040" 
+                     alt="Sahiba, Founder" class="founder-photo-rect">
+            </div>
+
+            <div class="founder-message-container">
+                <h2 class="founder-name">Sahiba Bharwani Narsinghani</h2>
+                <p class="founder-title">Founder & Lead Designer</p>
+
+                <h3 class="note-from-founder">A Personal Note on Design</h3>
+                <p class="founder-quote">
+                    "Every project starts with a conversation about soul. I believe your space should be your sanctuary,a curated collection of elements that tell your story. We provide a highly personalized, hands-on approach, ensuring the design journey is as comfortable as the final result. I look forward to working with you to realize your unique vision."
+                </p>
+                
+                <p class="signature-style">— Sahiba</p>
+            </div>
+        </section>
+
+        <hr class="separator">
+        
+        <div class="mission-container">
+            <h2>Our Core Design Commitments</h2>
+            <div class="pillars-grid">
+                <div class="pillar-item">
+                    <h4>1. Universal Functionality</h4>
+                    <p>We ensure every design is optimized for its intended use, creating environments that are intuitive and efficient, whether for a home, office, or retail space.</p>
+                </div>
+                <div class="pillar-item">
+                    <h4>2. Intentional Aesthetics</h4>
+                    <p>Our work is defined by the client's preference, delivering any style from contemporary to classic, with a focus on quality and enduring appeal.</p>
+                </div>
+                <div class="pillar-item">
+                    <h4>3. Client-Centric Process</h4>
+                    <p>We prioritize clear communication and collaboration, ensuring the final design is a direct and elevated realization of your unique goals and vision.</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 The Vision, The Design Studio. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/thevisionthedesignstudio?igsh=Y2phbHY0cG92N3Br&utm_source=qr">Instagram</a> | 
+            <a href="mailto:yourstudioemail@gmail.com">
+        Email
+    </a>
+</div>
+    </footer>
+
+</body>
+</html>

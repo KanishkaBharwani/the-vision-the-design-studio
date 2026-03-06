@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Contact Us | The Vision, The Design Studio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='4.1') }}">
+</head>
+<body>
+
+<nav class="bg-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8 text-gray-700">
+        <a href="/" class="hover:text-stone-600">Home</a>
+        <a href="/about" class="hover:text-stone-600">About</a>
+        <a href="/portfolio" class="hover:text-stone-600">Portfolio</a>
+        <a href="/testimonials" class="hover:text-stone-600">Testimonials</a>
+        <a href="/contact" class="hover:text-stone-600">Contact</a>
+      </div>
+
+      <!-- Mobile Button -->
+      <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+        ☰
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+      <a href="/" class="block py-2">Home</a>
+      <a href="/about" class="block py-2">About</a>
+      <a href="/portfolio" class="block py-2">Portfolio</a>
+      <a href="/testimonials" class="block py-2">Testimonials</a>
+      <a href="/contact" class="block py-2">Contact</a>
+  </div>
+</nav>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+
+<main class="page-content">
+    <h1 class="page-title">Ready to Begin Your Sanctuary?</h1>
+    <p class="subtitle">Reach out to us and book your preferred consultation slot.</p>
+
+    {% if success_message %}
+        <p style="color: green; font-weight: 600; text-align:center;">
+            {{ success_message }}
+        </p>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red; font-weight: 600; text-align:center;">
+            {{ error_message }}
+        </p>
+    {% endif %}
+
+    <section class="contact-form-section">
+    <form class="contact-form" action="/contact" method="POST">
+
+            <!-- Name & Email -->
+  <div class="form-group-inline">
+
+<div class="form-field">
+<label for="name">Your Name</label>
+<input type="text" id="name" name="user_name" required>
+</div>
+
+<div class="form-field">
+<label for="email">Your Email</label>
+<input type="email" id="email" name="user_email" required>
+</div>
+
+</div>
+
+<div class="form-field">
+<label for="phone">Contact Number</label>
+<input type="tel" id="phone" name="user_phone" placeholder="+91 XXXXX XXXXX" required>
+</div>
+            <!-- Project Type -->
+            <div class="form-field">
+                <label for="project-type">Project Type</label>
+                <select id="project-type" name="project_type">
+                    <option value="Full Home Design">Full Home Design</option>
+                    <option value="Single Room Redesign">Single Room Redesign</option>
+                    <option value="Consultation Only">Consultation Only</option>
+                    <option value="Other Inquiry">Other Inquiry</option>
+                </select>
+            </div>
+
+            <!-- Preferred Consultation Slot -->
+            <div class="form-field">
+                <label for="slot">Preferred Consultation Slot</label>
+                <select id="slot" name="preferred_slot" required>
+                    <option value="">Select a slot</option>
+                    <option value="Weekday Morning (10 AM – 12 PM)">Weekday Morning (10 AM – 12 PM)</option>
+                    <option value="Weekday Afternoon (1 PM – 4 PM)">Weekday Afternoon (1 PM – 4 PM)</option>
+                    <option value="Weekday Evening (5 PM – 7 PM)">Weekday Evening (5 PM – 7 PM)</option>
+                    <option value="Weekend Morning (10 AM – 1 PM)">Weekend Morning (10 AM – 1 PM)</option>
+                    <option value="Weekend Afternoon (2 PM – 5 PM)">Weekend Afternoon (2 PM – 5 PM)</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div class="form-field">
+                <label for="message">Tell Us About Your Vision</label>
+                <textarea id="message" name="project_details" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="button-link">
+                REQUEST CONSULTATION
+            </button>
+
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 The Vision, The Design Studio. All Rights Reserved.</p>
+    <div class="social-links">
+        <a href="https://www.instagram.com/thevisionthedesignstudio?igsh=Y2phbHY0cG92N3Br&utm_source=qr">Instagram</a> | 
+       <a href="mailto:thevisionthedesignstudioo@gmail.com">
+        Email
+    </a>
+</div>
+</footer>
+
+</body>
+</html>

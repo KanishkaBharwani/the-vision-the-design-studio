@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | The Vision, The Design Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { klift: { accent: '#c0a98e', dark: '#1a1a1a', light: '#f9f9ff' } },
+                    fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['"Poppins"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .klift-btn { background-color: #c0a98e; color: white; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; font-weight: 500; }
+        .klift-btn:hover { background-color: white; color: #1a1a1a; }
+    </style>
+</head>
+<body class="bg-klift-dark antialiased h-screen flex flex-col justify-center items-center text-center px-4">
+    
+    <div class="max-w-2xl">
+        <p class="text-klift-accent tracking-[0.3em] uppercase font-semibold text-sm mb-4">Error 404</p>
+        <h1 class="text-6xl md:text-8xl text-white font-bold mb-6 font-serif">Empty Space.</h1>
+        <p class="text-gray-400 mb-10 text-lg leading-relaxed">It seems the room you are looking for hasn't been designed yet. Let's guide you back to our curated spaces.</p>
+        
+        <a href="/" class="klift-btn px-10 py-4 rounded inline-block">Return to Studio</a>
+    </div>
+
+</body>
+</html>

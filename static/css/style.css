@@ -1,0 +1,761 @@
+/* --- New Font Imports: Elegant Sans-Serif and Classic Serif --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700;1,400..700&family=Poppins:ital,wght@0,100;0,200..900;1,100..900&display=swap');
+
+
+/* --- Global & Base Styling --- */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+:root {
+    /* Richer, warmer neutrals */
+    --color-white: #ffffff;
+    --color-off-white: #fcfbf8; /* Very clean, soft white */
+    --color-light-beige: #e5e0d8; /* Dusty, warm, sophisticated beige */
+    --color-mid-beige: #d0c8be; /* Deeper tone for contrast and accents */
+    --color-dark-grey: #3c3c3c; /* Dark Charcoal Grey for main text */
+    --color-muted-grey: #6b6b6b; /* Soft Grey for secondary text */
+    --color-accent: #8b796d; /* Rich, Muted Brown/Stone Accent */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-off-white); 
+    color: var(--color-dark-grey);
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: var(--color-muted-grey);
+}
+
+/* --- Site Branding Hero Section (HOMEPAGE HEADER) --- */
+.site-branding-hero {
+    background-color: var(--color-light-beige);
+    padding: 0px 10px;
+}
+
+.site-branding-overlay {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+
+.site-branding-overlay h1 {
+    font-size: 4.5em; 
+    margin: 0;
+    color: var(--color-dark-grey);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.site-branding-overlay p {
+    font-size: 1.5em; 
+    margin: 10px 0 0;
+    color: var(--color-muted-grey);
+}
+
+
+/* --- Site Branding Header Bar for SUBPAGES (Minimal) --- */
+.site-branding-hero-small {
+    padding: 30px 20px 10px; 
+    background-color: var(--color-light-beige); 
+    text-align: center;
+}
+
+.site-branding-overlay-small h1 {
+    font-size: 2.5em; 
+    margin: 0;
+    color: var(--color-dark-grey);
+}
+
+.site-branding-overlay-small p {
+    font-size: 1em;
+    margin: 5px 0 0;
+    color: var(--color-muted-grey);
+}
+
+
+/* --- Navigation Bar Styling --- */
+nav {
+    margin: 0; 
+    padding: 15px 0;
+    background-color: var(--color-white);
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative; /* CRITICAL for z-index to work */
+    z-index: 100; /* CRITICAL: Must be above everything else */
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-dark-grey);
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+/* --- Slideshow Styling --- */
+.page-hero-slideshow {
+    width: 100%;
+    overflow: hidden; 
+    height: 65vh; 
+    margin-bottom: 50px; 
+    position: relative; 
+    z-index: 10; 
+    display: block; 
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; 
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow-slide.active-slide {
+    opacity: 1; 
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+ object-position: center center;
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4em;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/* --- Call-to-Action Button Styling --- */
+.button-link {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    text-decoration: none; 
+    border: 2px solid var(--color-accent);
+    border-radius: 50px;
+    font-size: 1.1em;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.button-link:hover {
+    background-color: var(--color-white); 
+    color: var(--color-accent);
+}
+
+.primary-hero-button {
+    font-size: 1.25em; 
+    padding: 15px 40px; 
+}
+
+
+/* --- General Page Content for all pages --- */
+.page-content {
+    max-width: 1200px;
+    margin: 50px auto 100px; 
+    padding: 0 20px;
+    text-align: center;
+    min-height: 50vh; 
+}
+
+.page-title {
+    font-size: 3em;
+    margin-top: 0;
+    color: var(--color-dark-grey);
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--color-muted-grey);
+    margin-bottom: 50px;
+}
+
+/* --- Portfolio Grid Styling (for home and portfolio pages) --- */
+.projects-grid {
+    display: flex;
+    justify-content: center; 
+    gap: 30px; 
+    flex-wrap: wrap; 
+}
+
+.project-item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px; 
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 12px; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08); 
+    text-align: left; 
+    margin-bottom: 30px; 
+}
+
+.project-item img {
+    width: 100%; 
+    height: auto;
+    border-radius: 8px; 
+    margin-bottom: 15px;
+}
+
+.project-item h3 {
+    font-size: 1.6em;
+    color: var(--color-dark-grey);
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+/* --- About Preview Section (Home Page Philosophy Text) --- */
+#about-preview {
+    padding: 80px 5%;
+    background-color: var(--color-light-beige);
+}
+
+#about-preview h2 {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: var(--color-dark-grey);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Customized Philosophy Text Font */
+#about-preview .about-content p {
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 1.15em; 
+    line-height: 1.7; 
+    color: var(--color-dark-grey); 
+    max-width: 900px;
+    margin: 0 auto 25px;
+}
+
+
+/* --- Contact Form Styling --- */
+.contact-form {
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 40px; 
+    background-color: var(--color-white); 
+    border-radius: 12px; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); 
+    text-align: left;
+    border: 1px solid #e0ddd0;
+    
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 20px; 
+}
+
+.form-field {
+    width: 100%;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 600; 
+    color: var(--color-dark-grey);
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="date"],
+.contact-form input[type="time"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--color-mid-beige);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--color-off-white); 
+    font-size: 1em;
+    color: var(--color-dark-grey);
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    outline: none; 
+    border-color: var(--color-accent); 
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form button[type="submit"] {
+    margin-top: 20px; 
+    display: block; 
+    width: 100%;
+}
+
+/* --- About Page Specific Styling (Founder Layout) --- */
+.founder-intro {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 80px; 
+    margin-top: 50px;
+    padding: 0 5%;
+}
+
+.founder-image-container {
+    flex-shrink: 0; 
+    width: 450px; 
+    margin-left: -50px; 
+}
+
+.founder-photo-rect {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    box-shadow: 10px 10px 0px var(--color-mid-beige);
+    border: 1px solid var(--color-mid-beige);
+}
+
+.founder-message-container {
+    max-width: 500px; 
+    text-align: left;
+}
+
+/* Founder Typography */
+.founder-name {
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 3.2em; 
+    margin-bottom: 5px;
+    color: var(--color-dark-grey);
+}
+
+.founder-title {
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.1em;
+    color: var(--color-muted-grey);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.note-from-founder {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5em;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.founder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5em; 
+    line-height: 1.6;
+    color: var(--color-dark-grey);
+    font-style: italic; 
+    margin-bottom: 30px;
+}
+
+.signature-style {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-dark-grey);
+}
+
+/* Core Commitments/Pillars */
+.separator {
+    width: 100px;
+    height: 1px;
+    background-color: var(--color-mid-beige);
+    border: none;
+    margin: 50px auto;
+}
+
+.pillars-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.pillar-item {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.pillar-item h4 {
+    color: var(--color-dark-grey);
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+
+/* --- Testimonials Page Styling --- */
+.review-submission {
+    margin-top: 80px;
+    padding-top: 50px;
+    border-top: 1px solid var(--color-mid-beige);
+}
+
+.review-submission .contact-form {
+    max-width: 700px;
+    background-color: var(--color-mid-beige); 
+}
+
+.review-submission .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+#reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.testimonial-card {
+    padding: 30px;
+    background-color: var(--color-light-beige);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.testimonial-card .quote {
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--color-dark-grey);
+    margin-bottom: 20px;
+}
+
+.testimonial-card .client-name {
+    font-weight: bold;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* --- Interactive Star Rating Styling --- */
+.rating-stars {
+    display: flex; 
+    direction: rtl; 
+    padding-top: 7px; 
+    justify-content: flex-end; 
+    width: fit-content;
+}
+
+.rating-stars input[type="radio"] {
+    display: none; 
+}
+
+.rating-stars label {
+    color: #ccc; 
+    font-size: 2.2em; 
+    padding: 0 2px;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-shadow: 0px 0px 1px var(--color-dark-grey);
+}
+
+.rating-stars input[type="radio"]:checked ~ label {
+    color: #ffc100; 
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    color: #ffc100; 
+}
+
+
+/* --- Footer Styling --- */
+footer {
+    padding: 30px 20px;
+    margin-top: 50px;
+    background-color: var(--color-dark-grey);
+    color: var(--color-light-beige);
+    text-align: center;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--color-light-beige);
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--color-accent);
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+/* --- Media Queries for Mobile Responsiveness (For future use) --- */
+@media (max-width: 992px) {
+    /* Founder Page Mobile Stack */
+    .founder-intro {
+        flex-direction: column; 
+        align-items: center;
+        gap: 40px;
+    }
+    .founder-image-container {
+        width: 80%; 
+        margin-left: 0;
+    }
+    .founder-message-container {
+        text-align: center;
+    }
+    .founder-name, .founder-title, .note-from-founder {
+        text-align: center;
+    }
+}
+
+
+
+/* ===== GLOBAL MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 992px) {
+
+    /* Founder Section */
+    .founder-intro {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .founder-image-container {
+        width: 90%;
+        margin-left: 0;
+    }
+
+    .founder-message-container {
+        text-align: center;
+    }
+
+    .pillars-grid {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Navigation */
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    /* Page titles */
+    .page-title {
+        font-size: 2em;
+        padding: 0 15px;
+    }
+
+    .subtitle {
+        font-size: 1em;
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+
+    /* Slideshow */
+    .page-hero-slideshow {
+        height: 250px;
+    }
+
+    .slide-text {
+        font-size: 2em;
+        letter-spacing: 2px;
+    }
+
+    /* Projects grid (home & portfolio cards) */
+    .projects-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Portfolio gallery */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .gallery-grid img {
+        height: 220px;
+    }
+
+    /* Forms */
+    .form-group-inline {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-form {
+        padding: 25px;
+    }
+
+    /* Lightbox */
+    .lightbox-img {
+        max-width: 95%;
+        max-height: 80%;
+    }
+
+    .close-lightbox {
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+    }
+
+}
+@media (max-width: 768px) {
+
+    /* ---------- HERO ---------- */
+    .site-branding-hero {
+        padding: 60px 20px;
+        height: auto;
+    }
+
+    .site-branding-overlay {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .site-branding-overlay img {
+        width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .site-branding-overlay h1 {
+        font-size: 2.1em;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .site-branding-overlay p {
+        font-size: 1em;
+        text-align: center;
+        max-width: 320px;
+    }
+
+    /* ---------- NAV ---------- */
+ /* ---------- NAV MOBILE (HORIZONTAL) ---------- */
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;   /* prevents overflow */
+    gap: 10px;
+    padding: 12px 0;
+}
+
+nav a {
+    font-size: 0.9em;
+}
+
+
+    /* ---------- SLIDESHOW ---------- */
+    .page-hero-slideshow {
+        height: 260px;
+    }
+
+    .slide-text {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    /* ---------- PROJECT CARDS ---------- */
+    .projects-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-item {
+        max-width: 100%;
+    }
+
+}
+.about-image-wrapper {
+    max-width: 350px !important;
+    margin: 0 auto !important;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.about-image-wrapper img {
+    width: 100% !important;
+    height: 450px !important;
+    object-fit: cover !important;
+}

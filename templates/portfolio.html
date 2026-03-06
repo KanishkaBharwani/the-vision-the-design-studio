@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | The Vision, The Design Studio</title>
+    
+    <!-- Premium Klift Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='4.0') }}">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { klift: { accent: '#c0a98e', dark: '#1a1a1a', light: '#f9f9ff', gray: '#777777' } },
+                    fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['"Poppins"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; color: #777777; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; color: #1a1a1a; }
+        .klift-btn { background-color: #c0a98e; color: white; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; font-weight: 500; }
+        .klift-btn:hover { background-color: #1a1a1a; color: white; }
+    </style>
+</head>
+<body class="bg-klift-light antialiased flex flex-col min-h-screen">
+    
+    <!-- Premium Klift Navigation -->
+    <nav id="navbar" class="w-full z-50 py-6 px-4 md:px-12 bg-klift-dark shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-xl md:text-2xl lg:text-3xl font-serif font-bold text-white transition-colors duration-300">The Vision, The Design Studio.</a>
+            
+            <!-- Desktop Menu (Updated Links) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="text-white font-medium hover:text-klift-accent transition-colors">Home</a>
+                <a href="/#about" class="text-white font-medium hover:text-klift-accent transition-colors">About</a>
+                <a href="/portfolio" class="text-klift-accent font-medium">Projects</a>
+                <a href="/#reviews" class="text-white font-medium hover:text-klift-accent transition-colors">Reviews</a>
+            </div>
+
+            <!-- Mobile Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none text-2xl">☰</button>
+        </div>
+
+        <!-- Mobile Menu (Updated Links) -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-4 pb-2 text-center bg-klift-dark border-t border-gray-800 mt-4">
+            <a href="/" class="block py-2 text-white hover:text-klift-accent">Home</a>
+            <a href="/#about" class="block py-2 text-white hover:text-klift-accent">About</a>
+            <a href="/portfolio" class="block py-2 text-klift-accent">Projects</a>
+            <a href="/#reviews" class="block py-2 text-white hover:text-klift-accent">Reviews</a>
+            <a href="/#contact" class="block py-2 text-white hover:text-klift-accent">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-20 pb-16 bg-klift-dark text-center">
+        <h1 class="text-5xl md:text-6xl text-white font-bold mb-4 font-serif">Our Complete Portfolio</h1>
+        <p class="text-klift-accent tracking-[0.2em] uppercase font-semibold text-sm">A curated collection of refined interior transformations.</p>
+    </header>
+
+    <!-- Gallery Section (Klift Grid) -->
+   <!-- Gallery Section (Klift Grid) -->
+    <section class="py-20 bg-white flex-grow">
+        <div class="container mx-auto px-4 lg:px-12">
+            
+            <!-- 1. THE MISSING ADMIN UPLOAD FORM (Only shows if logged in) -->
+            {% if is_admin %}
+            <div class="bg-klift-light p-8 md:p-12 mb-20 rounded shadow-inner max-w-4xl mx-auto border-t-4 border-klift-accent">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-serif text-klift-dark">Studio Admin: Upload New Project</h3>
+                    <a href="/logout" class="text-red-500 text-sm tracking-widest uppercase hover:underline">Log Out</a>
+                </div>
+                <p class="text-sm text-gray-500 mb-8">This panel is only visible when logged in. Upload high-res images to instantly update your portfolio.</p>
+                
+                <form action="/add-project" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="title" placeholder="Project Name (e.g., The Azure Kitchen)" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent">
+                        <input type="text" name="category" placeholder="Category (e.g., Residential, Commercial)" required class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-klift-accent bg-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-klift-accent font-semibold mb-2 mt-4">Select Image</label>
+                        <input type="file" name="image" accept="image/*" required class="w-full border border-gray-300 p-3 bg-white rounded focus:outline-none focus:border-klift-accent">
+                    </div>
+                    <button type="submit" class="klift-btn w-full py-4 mt-4">+ Publish to Portfolio</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- 2. DYNAMICALLY UPLOADED PROJECTS (Appear First) -->
+                {% if projects %}
+                    {% for project in projects %}
+                    <div class="group relative overflow-hidden cursor-pointer shadow-lg rounded">
+                        <img src="{{ url_for('static', filename='uploads/' + project.image_filename) }}" alt="{{ project.title }}" class="w-full h-[350px] object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500 pointer-events-none"></div>
+                        
+                        <!-- ADMIN ONLY: Delete Button -->
+                        {% if is_admin %}
+                        <form action="/delete-project/{{ project.id }}" method="POST" class="absolute top-4 right-4 z-20">
+                            <button type="submit" onclick="return confirm('Permanently delete this project?');" class="text-red-400 hover:text-red-600 text-xs tracking-widest uppercase border border-red-400 hover:border-red-600 px-3 py-1 rounded transition-colors bg-black bg-opacity-70 pointer-events-auto">Delete</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- 3. YOUR ORIGINAL HARDCODED IMAGES (Appear After) -->
+                {% set images = [
+                    'portfolio/portfolio1.jpg', 'portfolio/portfolio2.jpg', 'portfolio/portfolio3.jpg', 
+                    'portfolio/portfolio4.jpeg', 'portfolio/portfolio5.jpeg', 'portfolio/portfolio6.jpeg', 
+                    'portfolio/portfolio7.jpeg', 'portfolio/portfolio8.jpeg', 'portfolio/portfolio9.jpeg', 
+                    'portfolio/portfolio10.jpeg', 'portfolio/portfolio11.jpeg', 
+                    'hero/hero1.jpeg', 'hero/hero2.jpeg', 'hero/hero3.jpeg', 'hero/hero4.jpeg'
+                ] %}
+                
+                {% for img in images %}
+                <div class="group relative overflow-hidden cursor-pointer shadow-lg rounded">
+                    <img src="{{ url_for('static', filename='images/' + img) }}" alt="Project" class="w-full h-[350px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500 pointer-events-none"></div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Klift Styled Footer -->
+    <footer class="bg-[#111111] text-gray-400 py-12 border-t border-gray-900 mt-auto">
+        <div class="container mx-auto px-4 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-center md:text-left">
+            <div>
+                <h2 class="text-2xl font-serif font-bold text-white mb-2">The Vision, The Design Studio.</h2>
+                <p class="text-sm">&copy; 2026 The Vision, The Design Studio. All Rights Reserved.</p>
+            </div>
+            <div class="md:text-right space-x-4">
+                <a href="https://www.instagram.com/thevisionthedesignstudio?igsh=Y2phbHY0cG92N3Br&utm_source=qr" class="hover:text-klift-accent transition-colors">Instagram</a>
+                <span class="text-gray-700">|</span>
+                <a href="mailto:yourstudioemail@gmail.com" class="hover:text-klift-accent transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Your Existing Scripts and Lightbox (Untouched) -->
+    <script src="{{ url_for('static', filename='js/app_final.js') }}"></script>
+    
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="close-lightbox text-white text-3xl cursor-pointer absolute top-4 right-8">&times;</span>
+        <img class="lightbox-img max-w-full max-h-[90vh] mx-auto mt-10" src="">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Logic
+            const btn = document.getElementById('menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            // Sticky Navbar Logic
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+
+            // Hero Slider Logic
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+            if(slides.length > 1) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active-slide');
+                    slides[currentSlide].classList.add('hidden-slide');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.remove('hidden-slide');
+                    slides[currentSlide].classList.add('active-slide');
+                }, 6000);
+            }
+
+            // --- AJAX FORM SUBMISSION (No Page Reloading) ---
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', async function(e) {
+                    e.preventDefault(); 
+                    
+                    const form = this;
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerText;
+                    
+                    submitBtn.innerText = 'Sending...';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-50');
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            body: new FormData(form)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (result.status === "success") {
+                            document.getElementById('success-alert').classList.remove('hidden');
+                            document.body.style.overflow = 'hidden'; 
+                            form.reset(); 
+                        } else {
+                            document.getElementById('error-alert').classList.remove('hidden');
+                            document.body.style.overflow = 'hidden'; 
+                        }
+                    } catch (err) {
+                        document.getElementById('error-alert').classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+                    } finally {
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-50');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
