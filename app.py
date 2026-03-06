@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 DATABASE = 'reviews.db'
 app.secret_key = 'super_secret_studio_key' # Required to keep her logged in securely
-CLIENT_PASSWORD = os.getenv("CLIENT_PASSWORD")# NEW: Configure where uploaded portfolio images will be saved
+CLIENT_PASSWORD = os.getenv("CLIENT_PASSWORD", "designadmin123")# NEW: Configure where uploaded portfolio images will be saved
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True) # Creates the folder if it doesn't exist
 
