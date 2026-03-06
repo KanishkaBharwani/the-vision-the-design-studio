@@ -250,7 +250,7 @@ def contact():
         # FIX 2: Return a JSON dictionary instead of render_template
         return {"status": "error"}
 # ==========================================================
-# CUSTOM 404 ERROR PAGE
+# CUSTOM 404 ERROR PAGE !!
 # ==========================================================
 @app.errorhandler(404)
 def page_not_found(e):
