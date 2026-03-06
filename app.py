@@ -171,7 +171,7 @@ def testimonials():
     reviews = conn.execute('SELECT * FROM reviews ORDER BY timestamp DESC').fetchall()
     conn.close()
     is_admin = session.get('is_admin', False)
-    return render_template('testimonials.html', reviews=reviews, is_admin=is_admin)
+    return render_template('reviews.html', reviews=reviews, is_admin=is_admin)
 
 @app.route('/submit-review', methods=['POST'])
 def submit_review():
