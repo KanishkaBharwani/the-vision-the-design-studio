@@ -165,7 +165,7 @@ def delete_project(project_id):
         
     return redirect(url_for('portfolio'))
 
-@app.route('/testimonials')
+@app.route('/reviews')
 def testimonials():
     conn = get_db_connection()
     reviews = conn.execute('SELECT * FROM reviews ORDER BY timestamp DESC').fetchall()
