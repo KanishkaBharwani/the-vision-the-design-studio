@@ -189,14 +189,16 @@ def submit_review():
 
 @app.route('/delete-review/<int:review_id>', methods=['POST'])
 def delete_review(review_id):
-    if request.remote_addr in ('127.0.0.1', 'localhost', '::1'):
-        conn = get_db_connection()
-        conn.execute('DELETE FROM reviews WHERE id = ?', (review_id,))
-        conn.commit()
-        conn.close()
-    # FIX: Redirect back to the homepage reviews section
-    return redirect(url_for('home') + '#reviews')
 
+    if not session.get('is_admin'):
+        return redirect(url_for('home'))
+
+    conn = get_db_connection()
+    conn.execute('DELETE FROM reviews WHERE id = ?', (review_id,))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('testimonials'))
 # ==========================================================
 # THE CONSULTATION BOOKING ROUTE
 # ==========================================================
