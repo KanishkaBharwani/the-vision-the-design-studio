@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename # NEW: Safely handles file uploads
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
-
+load_dotenv()
 app = Flask(__name__)
 DATABASE = 'reviews.db'
 app.secret_key = 'super_secret_studio_key' # Required to keep her logged in securely
