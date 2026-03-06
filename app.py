@@ -98,14 +98,18 @@ def logout():
 @app.route('/')
 def home():
     conn = get_db_connection()
-    reviews = conn.execute('SELECT * FROM reviews ORDER BY timestamp DESC LIMIT 3').fetchall()
+    reviews = conn.execute(
+        'SELECT * FROM reviews ORDER BY timestamp DESC LIMIT 3'
+    ).fetchall()
     conn.close()
-    
-    # NEW: Check if the visitor is the Admin (running on the local computer)
-    is_admin = (request.remote_addr in ('127.0.0.1', 'localhost', '::1')) 
-    
-    # NEW: Pass is_admin to the template
-    return render_template('home.html', reviews=reviews, is_admin=is_admin)
+
+    is_admin = session.get('is_admin', False)
+
+    return render_template(
+        'home.html',
+        reviews=reviews,
+        is_admin=is_admin
+    )
 
 @app.route('/about')
 def about():
@@ -207,7 +211,7 @@ def delete_review(review_id):
     conn.commit()
     conn.close()
 
-    return redirect(url_for('testimonials'))
+    return redirect(url_for('reviews'))
 # ==========================================================
 # THE CONSULTATION BOOKING ROUTE
 # ==========================================================
