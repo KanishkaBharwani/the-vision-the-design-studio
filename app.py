@@ -258,4 +258,4 @@ if __name__ == '__main__':
     with app.app_context():
         # Removed the 'if not os.path.exists' line so it always ensures tables exist!
         init_db()
-    app.run(debug=True)
+    app.run()
