@@ -170,7 +170,7 @@ def testimonials():
     conn = get_db_connection()
     reviews = conn.execute('SELECT * FROM reviews ORDER BY timestamp DESC').fetchall()
     conn.close()
-    is_admin = (request.remote_addr in ('127.0.0.1', 'localhost', '::1')) 
+    is_admin = session.get('is_admin', False)
     return render_template('testimonials.html', reviews=reviews, is_admin=is_admin)
 
 @app.route('/submit-review', methods=['POST'])
